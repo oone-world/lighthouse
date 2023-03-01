@@ -523,7 +523,7 @@ impl ChainSpec {
             })
             .expect("calculation does not overflow"),
             max_effective_balance: option_wrapper(|| {
-                u64::checked_pow(2, 5)?.checked_mul(u64::checked_pow(10, 9)?)
+                u64::checked_pow(2, 1)?.checked_mul(u64::checked_pow(10, 13)?)
             })
             .expect("calculation does not overflow"),
             ejection_balance: option_wrapper(|| {
