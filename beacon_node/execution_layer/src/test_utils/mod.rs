@@ -39,6 +39,8 @@ pub const DEFAULT_ENGINE_CAPABILITIES: EngineCapabilities = EngineCapabilities {
     new_payload_v2: true,
     forkchoice_updated_v1: true,
     forkchoice_updated_v2: true,
+    get_payload_bodies_by_hash_v1: true,
+    get_payload_bodies_by_range_v1: true,
     get_payload_v1: true,
     get_payload_v2: true,
     exchange_transition_configuration_v1: true,
@@ -58,7 +60,6 @@ pub struct MockExecutionConfig {
     pub terminal_block: u64,
     pub terminal_block_hash: ExecutionBlockHash,
     pub shanghai_time: Option<u64>,
-    pub eip4844_time: Option<u64>,
 }
 
 impl Default for MockExecutionConfig {
@@ -70,7 +71,6 @@ impl Default for MockExecutionConfig {
             terminal_block_hash: ExecutionBlockHash::zero(),
             server_config: Config::default(),
             shanghai_time: None,
-            eip4844_time: None,
         }
     }
 }
@@ -91,7 +91,6 @@ impl<T: EthSpec> MockServer<T> {
             DEFAULT_TERMINAL_BLOCK,
             ExecutionBlockHash::zero(),
             None, // FIXME(capella): should this be the default?
-            None, // FIXME(eip4844): should this be the default?
         )
     }
 
@@ -103,7 +102,6 @@ impl<T: EthSpec> MockServer<T> {
             terminal_block_hash,
             server_config,
             shanghai_time,
-            eip4844_time,
         } = config;
         let last_echo_request = Arc::new(RwLock::new(None));
         let preloaded_responses = Arc::new(Mutex::new(vec![]));
@@ -112,7 +110,6 @@ impl<T: EthSpec> MockServer<T> {
             terminal_block,
             terminal_block_hash,
             shanghai_time,
-            eip4844_time,
         );
 
         let ctx: Arc<Context<T>> = Arc::new(Context {
@@ -171,7 +168,6 @@ impl<T: EthSpec> MockServer<T> {
         terminal_block: u64,
         terminal_block_hash: ExecutionBlockHash,
         shanghai_time: Option<u64>,
-        eip4844_time: Option<u64>,
     ) -> Self {
         Self::new_with_config(
             handle,
@@ -182,7 +178,6 @@ impl<T: EthSpec> MockServer<T> {
                 terminal_block,
                 terminal_block_hash,
                 shanghai_time,
-                eip4844_time,
             },
         )
     }

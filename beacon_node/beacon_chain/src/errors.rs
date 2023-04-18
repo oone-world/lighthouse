@@ -1,4 +1,5 @@
 use crate::attester_cache::Error as AttesterCacheError;
+use crate::beacon_block_streamer::Error as BlockStreamerError;
 use crate::beacon_chain::ForkChoiceError;
 use crate::beacon_fork_choice_store::Error as ForkChoiceStoreError;
 use crate::eth1_chain::Error as Eth1ChainError;
@@ -143,6 +144,7 @@ pub enum BeaconChainError {
     ExecutionLayerMissing,
     BlockVariantLacksExecutionPayload(Hash256),
     ExecutionLayerErrorPayloadReconstruction(ExecutionBlockHash, Box<execution_layer::Error>),
+    EngineGetCapabilititesFailed(Box<execution_layer::Error>),
     BlockHashMissingFromExecutionLayer(ExecutionBlockHash),
     InconsistentPayloadReconstructed {
         slot: Slot,
@@ -150,6 +152,7 @@ pub enum BeaconChainError {
         canonical_transactions_root: Hash256,
         reconstructed_transactions_root: Hash256,
     },
+    BlockStreamerError(BlockStreamerError),
     AddPayloadLogicError,
     ExecutionForkChoiceUpdateFailed(execution_layer::Error),
     PrepareProposerFailed(BlockProcessingError),
@@ -258,11 +261,6 @@ pub enum BlockProductionError {
     BlockingFailed(execution_layer::Error),
     TerminalPoWBlockLookupFailed(execution_layer::Error),
     GetPayloadFailed(execution_layer::Error),
-    GetBlobsFailed(execution_layer::Error),
-    BlobPayloadMismatch {
-        blob_block_hash: ExecutionBlockHash,
-        payload_block_hash: ExecutionBlockHash,
-    },
     FailedToReadFinalizedBlock(store::Error),
     MissingFinalizedBlock(Hash256),
     BlockTooLarge(usize),
