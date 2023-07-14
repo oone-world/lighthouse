@@ -43,7 +43,6 @@ echo "Completed init"
 
 exec $GETH_BINARY \
     --datadir $data_dir \
-    --ipcdisable \
     --http \
     --http.api="engine,eth,web3,net,debug" \
     --networkid=$CHAIN_ID \

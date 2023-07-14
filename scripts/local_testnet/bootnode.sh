@@ -11,7 +11,7 @@ source ./vars.env
 
 echo "Generating bootnode enr"
 
-lcli \
+$LCLI_BINARY \
 	generate-bootnode-enr \
 	--ip 127.0.0.1 \
 	--udp-port $BOOTNODE_PORT \
@@ -28,7 +28,7 @@ DEBUG_LEVEL=${1:-info}
 
 echo "Starting bootnode"
 
-exec lighthouse boot_node \
+exec $LIGHTHOUSE_BINARY boot_node \
     --testnet-dir $TESTNET_DIR \
     --port $BOOTNODE_PORT \
     --listen-address 127.0.0.1 \

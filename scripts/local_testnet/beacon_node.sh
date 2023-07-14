@@ -44,16 +44,14 @@ http_port=${@:$OPTIND+2:1}
 execution_endpoint=${@:$OPTIND+3:1}
 execution_jwt=${@:$OPTIND+4:1}
 
-lighthouse_binary=lighthouse
-
-exec $lighthouse_binary \
+exec $LIGHTHOUSE_BINARY \
 	--debug-level $DEBUG_LEVEL \
 	bn \
 	$SUBSCRIBE_ALL_SUBNETS \
 	--datadir $data_dir \
 	--testnet-dir $TESTNET_DIR \
 	--enable-private-discovery \
-  --disable-peer-scoring \
+  --purge-db \
 	--staking \
 	--enr-address 127.0.0.1 \
 	--enr-udp-port $network_port \

@@ -16,7 +16,7 @@ source ./vars.env
 NOW=`date +%s`
 GENESIS_TIME=`expr $NOW + $GENESIS_DELAY`
 
-lcli \
+$LCLI_BINARY \
 	new-testnet \
 	--spec $SPEC_PRESET \
 	--deposit-contract-address $DEPOSIT_CONTRACT_ADDRESS \
@@ -42,7 +42,7 @@ lcli \
 echo Specification and genesis.ssz generated at $TESTNET_DIR.
 echo "Generating $VALIDATOR_COUNT validators concurrently... (this may take a while)"
 
-lcli \
+$LCLI_BINARY \
 	insecure-validators \
 	--count $VALIDATOR_COUNT \
 	--base-dir $DATADIR \

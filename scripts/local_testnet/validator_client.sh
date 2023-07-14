@@ -22,7 +22,7 @@ while getopts "pd:" flag; do
   esac
 done
 
-exec lighthouse \
+exec $LIGHTHOUSE_BINARY \
 	--debug-level $DEBUG_LEVEL \
 	vc \
 	$BUILDER_PROPOSALS \
@@ -30,5 +30,5 @@ exec lighthouse \
 	--testnet-dir $TESTNET_DIR \
 	--init-slashing-protection \
 	--beacon-nodes ${@:$OPTIND+1:1} \
-	--suggested-fee-recipient 0x690B9A9E9aa1C9dB991C7721a92d351Db4FaC990 \
+	--suggested-fee-recipient 0xc9cB365CA68C276C67Aa38CAcA8E3EF434cC4027 \
 	$VC_ARGS

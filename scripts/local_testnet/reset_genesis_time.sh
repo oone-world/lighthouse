@@ -10,7 +10,7 @@ source ./vars.env
 
 NOW=$(date +%s)
 
-lcli \
+$LCLI_BINARY \
 	change-genesis-time \
 	$TESTNET_DIR/genesis.ssz \
 	$(date +%s)
