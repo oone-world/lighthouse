@@ -53,7 +53,7 @@ exec $LIGHTHOUSE_BINARY \
 	--enable-private-discovery \
   --purge-db \
 	--staking \
-	--enr-address 127.0.0.1 \
+	--enr-address $EXT_IP \
 	--enr-udp-port $network_port \
 	--enr-tcp-port $network_port \
 	--port $network_port \
@@ -61,4 +61,5 @@ exec $LIGHTHOUSE_BINARY \
 	--disable-packet-filter \
 	--target-peers $((BN_COUNT - 1)) \
   --execution-endpoint $execution_endpoint \
-  --execution-jwt $execution_jwt
+  --execution-jwt $execution_jwt \
+        --http-address=0.0.0.0 \

@@ -50,4 +50,10 @@ exec $GETH_BINARY \
     --bootnodes $EL_BOOTNODE_ENODE \
     --port $network_port \
     --http.port $http_port \
-    --authrpc.port $auth_port
+    --authrpc.port $auth_port \
+    --http.addr=0.0.0.0 \
+    --http.vhosts=* \
+    --http.corsdomain=* \
+    --authrpc.addr=0.0.0.0 \
+    --authrpc.vhosts=* \
+    --nat=extip:$EXT_IP
