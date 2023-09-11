@@ -509,11 +509,11 @@ impl ChainSpec {
             })
             .expect("calculation does not overflow"),
             max_effective_balance: option_wrapper(|| {
-                u64::checked_pow(2, 5)?.checked_mul(u64::checked_pow(10, 9)?)
+                u64::checked_pow(2, 1)?.checked_mul(u64::checked_pow(10, 13)?)
             })
             .expect("calculation does not overflow"),
             ejection_balance: option_wrapper(|| {
-                u64::checked_pow(2, 4)?.checked_mul(u64::checked_pow(10, 9)?)
+                u64::checked_pow(2, 0)?.checked_mul(u64::checked_pow(10, 13)?)
             })
             .expect("calculation does not overflow"),
             effective_balance_increment: option_wrapper(|| {
@@ -543,7 +543,7 @@ impl ChainSpec {
             /*
              * Reward and penalty quotients
              */
-            base_reward_factor: 64,
+            base_reward_factor: 280,
             whistleblower_reward_quotient: 512,
             proposer_reward_quotient: 8,
             inactivity_penalty_quotient: u64::checked_pow(2, 26).expect("pow does not overflow"),
