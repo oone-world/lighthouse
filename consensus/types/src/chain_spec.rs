@@ -528,7 +528,7 @@ impl ChainSpec {
             /*
              * Reward and penalty quotients
              */
-            base_reward_factor: 250,
+            base_reward_factor: 280,
             whistleblower_reward_quotient: 512,
             proposer_reward_quotient: 8,
             inactivity_penalty_quotient: u64::checked_pow(2, 26).expect("pow does not overflow"),
